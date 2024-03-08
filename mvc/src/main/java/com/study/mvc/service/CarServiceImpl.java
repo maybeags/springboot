@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class CarServiceImpl implements CarService{
 
-    @Value("${component.carRepository.name}")
     private final String componentName = "a";
 
     @Autowired
