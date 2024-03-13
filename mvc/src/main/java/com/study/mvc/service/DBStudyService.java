@@ -4,6 +4,7 @@ import com.study.mvc.dto.DBStudyReqDto;
 import com.study.mvc.dto.DBStudyInsertRespDto;
 import com.study.mvc.dto.DBStudySelectRespDto;
 import com.study.mvc.entity.Study;
+import com.study.mvc.exception.DuplicatedException;
 import com.study.mvc.repository.DBStudyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -97,6 +98,12 @@ public class DBStudyService {
     public int patchById(int id, DBStudyReqDto dbStudyReqDto){
         Study study = dbStudyReqDto.toEntity(id);
         return dbStudyRepository.patchById(study);
+    }
+
+    public void checkDuplicated(String name) {
+        if(dbStudyRepository.findStudyByName(name) != null) {
+            throw new DuplicatedException("이름 중복 오류");
+        }
     }
 
 }
