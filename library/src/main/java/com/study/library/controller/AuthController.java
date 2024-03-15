@@ -3,6 +3,7 @@ package com.study.library.controller;
 import com.study.library.aop.annotation.ParamsPrintAspect;
 import com.study.library.aop.annotation.ValidAspect;
 import com.study.library.dto.SignUpReqDto;
+import com.study.library.dto.SigninReqDto;
 import com.study.library.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,5 +35,11 @@ public class AuthController {
         authService.signup(signUpReqDto);
 
         return ResponseEntity.created(null).body(true);
+    }
+
+    @PostMapping("/signin")
+    public ResponseEntity<?> signin(@RequestBody SigninReqDto signinReqDto) {
+
+        return ResponseEntity.ok(authService.signin(signinReqDto));
     }
 }
