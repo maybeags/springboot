@@ -18,8 +18,8 @@
     </resultMap>
 
     <resultMap id="UserResultMap" type="com.study.library.entity.User">
-        <id property="userId" column="" />
-        <result property="username" column="user_name" />
+        <id property="userId" column="user_id" />
+        <result property="username" column="username" />
         <result property="password" column="password" />
         <result property="name" column="name" />
         <result property="email" column="email" />
@@ -45,7 +45,7 @@
             resultMap = "UserResultMap" >
         select
             ut.user_id,
-            ut.user_name,
+            ut.username,
             ut.password,
             ut.name,
             ut.email,
@@ -60,6 +60,6 @@
             left outer join role_register_tb rrt on(rrt.user_id = ut.user_id)
             left outer join role_tb rt on(rt.role_id = rrt.role_id)
         where
-            user_name = #{username}
+            ut.username = #{username}
     </select>
 </mapper>

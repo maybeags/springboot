@@ -42,4 +42,9 @@ public class AuthController {
 
         return ResponseEntity.ok(authService.signin(signinReqDto));
     }
+
+//    @GetMapping("/principal")
+//    public ResponseEntity<?> authenticated() {
+//        return ResponseEntity.ok(null);
+//    }
 }
