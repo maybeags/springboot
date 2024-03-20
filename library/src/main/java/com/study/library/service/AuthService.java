@@ -39,7 +39,7 @@ public class AuthService {
         User user = signUpReqDto.toEntity(passwordEncoder);
 
         successCount += userMapper.saveUser(user);
-        successCount += userMapper.saveRole(user.getUserId());
+        successCount += userMapper.saveRole(user.getUserId(), 1);
 
         if(successCount < 2) {
             throw new SaveException();
