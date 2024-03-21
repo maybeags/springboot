@@ -1,5 +1,6 @@
 package com.study.library.aop;
 
+import com.study.library.dto.OAuth2SignUpReqDto;
 import com.study.library.dto.SignUpReqDto;
 import com.study.library.exception.ValidException;
 import com.study.library.repository.UserMapper;
@@ -52,6 +53,21 @@ public class ValidAop {
             }
 
             if(userMapper.findUserByUsername(signUpReqDto.getUsername()) != null) {
+                ObjectError objectError = new FieldError("username", "username", "이미 존재하는 사용자이름입니다.");
+                bindingResult.addError(objectError);
+            }
+        }
+
+        if(methodName.equals("oAuth2Signup")) {
+            OAuth2SignUpReqDto oAuth2SignUpReqDto = null;
+
+            for(Object arg : args) {
+                if(arg.getClass() == OAuth2SignUpReqDto.class) {
+                    oAuth2SignUpReqDto = (OAuth2SignUpReqDto) arg;
+                }
+            }
+
+            if(userMapper.findUserByUsername(oAuth2SignUpReqDto.getUsername()) != null) {
                 ObjectError objectError = new FieldError("username", "username", "이미 존재하는 사용자이름입니다.");
                 bindingResult.addError(objectError);
             }
