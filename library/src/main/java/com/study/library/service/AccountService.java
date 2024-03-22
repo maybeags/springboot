@@ -29,9 +29,11 @@ public class AccountService {
         if(!passwordEncoder.matches(editPasswordReqDto.getOldPassword(), user.getPassword())) {
             throw new ValidException(Map.of("oldPassword", "비밀번호 인증에 실패하였습니다.\n다시 입력하세요."));
         }
-        if(editPasswordReqDto.getNewPassword().equals(editPasswordReqDto.getNewPasswordCheck())) {
+        if(!editPasswordReqDto.getNewPassword().equals(editPasswordReqDto.getNewPasswordCheck())) {
             throw new ValidException(Map.of("newPasswordCheck", "새로운 비밀번호가 서로 일치하지 않습니다.\n다시 입력하세요."));
         }
 
+        user.setPassword(passwordEncoder.encode(editPasswordReqDto.getNewPassword()));
+        userMapper.modifyPassword(user);
     }
 }

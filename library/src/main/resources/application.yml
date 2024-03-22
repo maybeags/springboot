@@ -40,7 +40,6 @@ spring:
               - email
               - profile
           naver:
-<<<<<<< HEAD
             clientName: Naver
             authorizationGrantType: authorization_code
             clientAuthenticationMethod: POST
@@ -48,17 +47,7 @@ spring:
             clientName: Kakao
             authorizationGrantType: authorization_code
             clientAuthenticationMethod: POST
-=======
-            authorizationGrantType: authorization_code
-            scope:
-              - name
-              - email
-          kakao:
-            authorizationGrantType: authorization_code
-            scope:
-              - profile_nickname
-              - profile_image
->>>>>>> 3038735f0aebac6a62d25f92728a233a2370b81f
+
         provider:
           naver:
             authorizationUri: https://nid.naver.com/oauth2.0/authorize
