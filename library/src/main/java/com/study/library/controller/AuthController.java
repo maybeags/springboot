@@ -2,6 +2,7 @@ package com.study.library.controller;
 
 import com.study.library.aop.annotation.ParamsPrintAspect;
 import com.study.library.aop.annotation.ValidAspect;
+import com.study.library.dto.OAuth2MergeReqDto;
 import com.study.library.dto.OAuth2SignUpReqDto;
 import com.study.library.dto.SignUpReqDto;
 import com.study.library.dto.SigninReqDto;
@@ -49,6 +50,13 @@ public class AuthController {
 
         return ResponseEntity.ok(authService.signin(signinReqDto));
     }
+
+    @PostMapping("/oauth2/merge")
+    public ResponseEntity<?> oAuth2Merge(@RequestBody OAuth2MergeReqDto oAuth2MergeReqDto) {
+        authService.oAuth2Merge(oAuth2MergeReqDto);
+        return ResponseEntity.ok(true);
+    }
+
 
 //    @GetMapping("/principal")
 //    public ResponseEntity<?> authenticated() {
