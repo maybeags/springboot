@@ -20,6 +20,9 @@ public class OAuth2PrincipalUserService implements OAuth2UserService {
         Map<String, Object> attributes = oAuth2User.getAttributes();
         String provider = userRequest.getClientRegistration().getClientName(); //Google, Kakao, Naver같은식으로 뜰거다
         Map<String, Object> newAttributes = null;
+
+        System.out.println(attributes);
+
         switch (provider) {
             case "Google":
                 String id = attributes.get("sub").toString();
